@@ -1,0 +1,26 @@
+[
+    {
+        "id":"one",
+        "url" : "/img/1.png", 
+        "favourite" : "true",
+        "description" : ""
+    },
+    {
+        "id":"two",
+        "url" : "/img/2.png",
+        "favourite" : "false",
+        "description" : ""
+    },
+    {
+        "id":"three",
+        "url" : "/img/3.png",
+        "favourite" : "false",
+        "description" : ""
+    },
+    {
+        "id":"four",
+        "url" : "/img/4.png",
+        "favourite" : "false",
+        "description" : ""
+    }
+]
