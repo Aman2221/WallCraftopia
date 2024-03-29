@@ -1,6 +1,10 @@
+"use client";
+import Image from "next/image";
 import React from "react";
 
 const ProfilePage = () => {
+  const user = JSON.parse(localStorage.getItem("user") as string);
+
   return (
     <div className="flex justify-center items-center mt-200">
       <div className="bg-white max-w-2xl shadow-md overflow-hidden sm:rounded-lg">
@@ -15,32 +19,51 @@ const ProfilePage = () => {
         <div className="border-t border-gray-200">
           <dl>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Name</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                Mickael Poulaz
+                <Image
+                  src={user.photoURL}
+                  height={80}
+                  width={80}
+                  alt="user image"
+                />
               </dd>
             </div>
+            {user.displayName ? (
+              <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">Name</dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {user.displayName}
+                </dd>
+              </div>
+            ) : (
+              <></>
+            )}
+            {user.displayName ? (
+              <div className=" bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt className="text-sm font-medium text-gray-500">
+                  Email verified
+                </dt>
+                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  {user.emailVerified.toString()}
+                </dd>
+              </div>
+            ) : (
+              <></>
+            )}
+
             <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Interest</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                React JS
-              </dd>
-            </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">
                 Email address
               </dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                m.poul@example.com
+                {user.email}
               </dd>
             </div>
 
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">About</dt>
+              <dt className="text-sm font-medium text-gray-500">Unique ID</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                To get social media testimonials like these, keep your customers
-                engaged with your social media accounts by posting regularly
-                yourself
+                {user.uid}
               </dd>
             </div>
           </dl>

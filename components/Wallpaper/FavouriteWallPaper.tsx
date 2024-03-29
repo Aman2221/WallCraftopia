@@ -25,7 +25,7 @@ const FavouriteWallPaper = ({ item }: { item: string }) => {
           <i className="bx bx-download"></i>
         </a>
       </div>
-      <div>
+      <div className="wallpaper-img">
         <Image src={item} height={800} width={400} alt="image" />
       </div>
     </div>

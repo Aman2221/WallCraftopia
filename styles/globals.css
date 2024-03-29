@@ -91,13 +91,16 @@ body::-webkit-scrollbar {
   border-radius: 50%;
 }
 .loader::before {
-  border-color: rgb(31 41 55) lime;
+  border-color: rgb(31 41 55) rgb(29 78 216);
   animation: inherit;
   animation-duration: 0.5s;
   animation-direction: reverse;
 }
 .loader::after {
   margin: 8px;
+}
+.wallpaper-img img {
+  height: 600px;
 }
 @keyframes l16 {
   100% {

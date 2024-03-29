@@ -2,6 +2,7 @@ export interface wall_paper {
     id: string,
     url: string
     favourite: string
+    desc?: string
 }
 
 export interface user_data {
