@@ -29,7 +29,7 @@ const WallPaper = ({
       })
         .then(() => {
           SuccessToast("Wallpaper added to favourites");
-          // router.push("/favourites");
+          router.push("/favourites");
         })
         .catch((error) => {
           const errorCode = error.code;

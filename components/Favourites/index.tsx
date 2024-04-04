@@ -18,11 +18,17 @@ const FavouritesPage = () => {
   return (
     <div className="container max-w-screen-xl mx-auto">
       {data?.favourites ? (
-        <div className="flex flex-wrap gap-5">
-          {data.favourites.map((item: string) => (
-            <FavouriteWallPaper item={item} />
-          ))}
-        </div>
+        data?.favourites.length ? (
+          <div className="flex flex-wrap gap-5">
+            {data.favourites.map((item: string) => (
+              <FavouriteWallPaper item={item} />
+            ))}
+          </div>
+        ) : (
+          <div className="flex justify-center items-center mt-80">
+            No Favourites
+          </div>
+        )
       ) : (
         <div className="flex justify-center w-full mt-96">
           <div className="loader"></div>
