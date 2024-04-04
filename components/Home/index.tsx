@@ -34,7 +34,7 @@ const HomePage = () => {
 
   return (
     <div className="container max-w-screen-xl mx-auto mt-8">
-      {wallPapData && wallPapData.length && (
+      {wallPapData && wallPapData.length > 0 && (
         <div className="flex flex-wrap gap-5 xs:justify-center xl:justify-start">
           {wallPapData.map((item: wall_paper) => (
             <div key={item.url}>
