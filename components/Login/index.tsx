@@ -6,6 +6,7 @@ import { auth, handleLoginWithGoogle } from "@/config/firebase";
 import { ErrorToast, SuccessToast } from "@/services/toast";
 import { ToastContainer } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { addUserToDb } from "@/config/functions";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -27,6 +28,14 @@ const LoginPage = () => {
     signInWithEmailAndPassword(auth, user.email, user.password)
       .then((userCredential) => {
         const user = userCredential.user;
+        if (user && user.email)
+          addUserToDb(
+            user.email?.slice(0, user.email.indexOf("@")),
+            user.email,
+            false,
+            "",
+            user.uid
+          );
         localStorage.setItem("user", JSON.stringify(user));
         SuccessToast("User logged in Successfully");
         router.push("/");

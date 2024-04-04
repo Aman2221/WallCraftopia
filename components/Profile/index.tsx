@@ -20,12 +20,20 @@ const ProfilePage = () => {
           <dl>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <Image
-                  src={user.photoURL}
-                  height={80}
-                  width={80}
-                  alt="user image"
-                />
+                {user.photoURL && user.photoURL.length ? (
+                  <Image
+                    src={user.photoURL}
+                    height={80}
+                    width={80}
+                    alt="user image"
+                  />
+                ) : (
+                  <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                    <span className="font-medium text-gray-600 dark:text-gray-300">
+                      {user.email.slice(0, 1).toUpperCase()}
+                    </span>
+                  </div>
+                )}
               </dd>
             </div>
             {user.displayName ? (
