@@ -1,18 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import wallData from "@/data/wallpapers.json";
 import WallPaper from "../Wallpaper";
 import { user_data, wall_paper } from "@/interfaces";
-import {
-  formateWallpaper,
-  getUserFavourite,
-  getWallpapers,
-} from "@/config/functions";
+import { getUserFavourite, getWallpapers } from "@/config/functions";
 import { InView } from "react-intersection-observer";
 import Loader from "../Loader";
 
 const HomePage = () => {
-  const [showLoader, setShowLoader] = useState(true);
   const [wallPapData, setWallPapData] = useState<wall_paper[]>([]);
   const [data, setData] = useState<user_data>();
   const [pageNumber, setPageNumber] = useState(1);
@@ -20,7 +14,6 @@ const HomePage = () => {
   const handleInView = (isView: boolean) => {
     setPageNumber(pageNumber + 1);
     getWallpapers(wallPapData, pageNumber);
-    setShowLoader(false);
   };
 
   const getData = async () => {

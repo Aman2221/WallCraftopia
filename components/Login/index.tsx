@@ -3,10 +3,12 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, handleLoginWithGoogle } from "@/config/firebase";
-import { redirect } from "next/navigation";
 import { ErrorToast, SuccessToast } from "@/services/toast";
+import { ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const router = useRouter();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -27,7 +29,7 @@ const LoginPage = () => {
         const user = userCredential.user;
         localStorage.setItem("user", JSON.stringify(user));
         SuccessToast("User logged in Successfully");
-        redirect("/");
+        router.push("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -38,6 +40,7 @@ const LoginPage = () => {
 
   return (
     <section className="bg-gray-50 overflow-hidden">
+      <ToastContainer />
       <div className="flex flex-col items-center justify-center mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -112,7 +115,7 @@ const LoginPage = () => {
                 Sign in
               </button>
               <button
-                onClick={handleLoginWithGoogle}
+                onClick={() => handleLoginWithGoogle(router)}
                 className="w-full text-white border hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center gap-2"
               >
                 <img

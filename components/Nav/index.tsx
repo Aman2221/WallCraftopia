@@ -2,8 +2,12 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
+import { auth } from "@/config/firebase";
+import { ErrorToast, SuccessToast } from "@/services/toast";
+import { useRouter } from "next/navigation";
 
 const Nav = () => {
+  const router = useRouter();
   const [searchKey, setSearchKey] = useState("");
   const pathname = usePathname();
 
@@ -11,6 +15,20 @@ const Nav = () => {
     setSearchKey(e.target.value);
   };
 
+  const handleLogout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        localStorage.clear();
+        router.push("/login");
+        SuccessToast("User logged out successfully");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        ErrorToast(`${errorCode}, ${errorMessage}`);
+      });
+  };
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-full top-0 z-10">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -162,6 +180,12 @@ const Nav = () => {
               >
                 Favourites
               </Link>
+            </li>
+            <li
+              onClick={handleLogout}
+              className={`block py-2 px-3 bg-blue-700 rounded md:bg-transparent  md:p-0 text-white cursor-pointer`}
+            >
+              Logout
             </li>
           </ul>
         </div>

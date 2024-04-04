@@ -3,11 +3,12 @@ import { auth, handleLoginWithGoogle } from "@/config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import React, { useState } from "react";
-import { redirect } from "next/navigation";
-import { ErrorToast, SuccessToast, WarningToast } from "@/services/toast";
+import { ErrorToast, SuccessToast } from "@/services/toast";
 import { ToastContainer } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
+  const router = useRouter();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -30,7 +31,7 @@ const SignUpPage = () => {
           const user = userCredential.user;
           localStorage.setItem("user", JSON.stringify(user));
           SuccessToast("User logged in Successfully");
-          redirect("/");
+          router.push("/");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -138,7 +139,7 @@ const SignUpPage = () => {
                   Create an account
                 </button>
                 <button
-                  onClick={handleLoginWithGoogle}
+                  onClick={() => handleLoginWithGoogle(router)}
                   className="w-full text-white border hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center gap-2"
                 >
                   <img
