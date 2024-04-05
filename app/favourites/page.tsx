@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import React from "react";
 
 const Favourites = () => {
-  return <Layout children={<FavouritesPage />} />;
+  return <Layout>{<FavouritesPage />}</Layout>;
 };
 
 export default Favourites;

@@ -21,7 +21,9 @@ const FavouritesPage = () => {
         data?.favourites.length ? (
           <div className="flex flex-wrap gap-5">
             {data.favourites.map((item: string) => (
-              <FavouriteWallPaper item={item} />
+              <div key={item}>
+                <FavouriteWallPaper item={item} />
+              </div>
             ))}
           </div>
         ) : (

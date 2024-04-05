@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import SignUpPage from "@/components/Signup";
 import React from "react";
 
