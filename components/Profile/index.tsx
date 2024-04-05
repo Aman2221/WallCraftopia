@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 const ProfilePage = () => {
-  const user_data = localStorage.getItem("user");
+  const user_data = localStorage ? localStorage.getItem("user") : "";
   const user = localStorage && user_data ? JSON.parse(user_data as string) : "";
 
   return (
