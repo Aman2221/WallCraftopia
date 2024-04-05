@@ -3,7 +3,8 @@ import Image from "next/image";
 import React from "react";
 
 const ProfilePage = () => {
-  const user = JSON.parse(localStorage.getItem("user") as string);
+  const user_data = localStorage.getItem("user");
+  const user = localStorage && user_data ? JSON.parse(user_data as string) : "";
 
   return (
     <div className="flex justify-center items-center mt-200">
